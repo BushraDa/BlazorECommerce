@@ -4,7 +4,7 @@
     {
         Task<T> GetByIdAsync(string id);
         T GetById(string id);
-        IQueryable<T> GetAll(string id);
+        IQueryable<T> GetAll();
         Task<T> CreateAsync(T entity);
         T Create(T entity);
         T Update(T entity);

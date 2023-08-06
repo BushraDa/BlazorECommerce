@@ -23,7 +23,7 @@
             throw new NotImplementedException();
         }
 
-        public IQueryable<T> GetAll(string id)
+        public IQueryable<T> GetAll()
         {
             return _context.Set<T>().AsQueryable();
         }

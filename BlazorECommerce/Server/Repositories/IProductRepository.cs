@@ -1,7 +1,9 @@
 ﻿
+using BlazorECommerce.Shared;
+
 namespace BlazorECommerce.Server.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IBaseRepository<Product>
     {
     }
 }
