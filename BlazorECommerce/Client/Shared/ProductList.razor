@@ -1,0 +1,18 @@
+﻿@using BlazorECommerce.Client.Services
+@inject IProductService productService
+
+<div class="row">
+    @foreach (var item in productService.Products)
+   {
+       <div class="col-md-3">
+           <h3>@item.Name</h3>
+           <p>$@item.Price</p>
+       </div>
+   }
+</div>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await productService.GetAll();
+    }
+}
