@@ -8,19 +8,22 @@
         {
             _context = context;
         }
-        public T Create(T entity)
+        public void Create(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Add(entity);
+            _context.SaveChanges();
         }
 
-        public Task<T> CreateAsync(T entity)
+        public async Task CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public T Delete(T entity)
+        public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Remove(entity);
+            _context.SaveChanges();
         }
 
         public IQueryable<T> GetAll()
@@ -28,19 +31,20 @@
             return _context.Set<T>().AsQueryable();
         }
 
-        public T GetById(string id)
+        public T? GetById(long id)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Find(id);
         }
 
-        public Task<T> GetByIdAsync(string id)
+        public async Task<T?> GetByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public T Update(T entity)
+        public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _context.Set<T>().Update(entity);
+            _context.SaveChanges();
         }
     }
 }

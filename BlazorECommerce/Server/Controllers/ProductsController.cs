@@ -1,4 +1,6 @@
-﻿using BlazorECommerce.Server.Repositories;
+﻿using AutoMapper;
+using BlazorECommerce.Server.Dtos;
+using BlazorECommerce.Server.Repositories;
 using BlazorECommerce.Shared;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +13,12 @@ namespace BlazorECommerce.Server.Controllers
     public class ProductsController : ControllerBase
     {
         public IProductRepository _productRepository;
+        public IMapper _mapper;
 
-        public ProductsController(IProductRepository productRepository)
+        public ProductsController(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
         // GET: api/<ProductsController>
         [HttpGet]
@@ -34,20 +38,34 @@ namespace BlazorECommerce.Server.Controllers
 
         // POST api/<ProductsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Product Post([FromBody] ProductAddDto dto)
         {
+            var prod = _mapper.Map<Product>(dto);
+            _productRepository.Create(prod);
+
+            return prod;
         }
 
         // PUT api/<ProductsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public Product Put(long id, [FromBody] ProductAddDto dto)
         {
+
+            var prod = _productRepository.GetById(id);
+            _mapper.Map(dto, prod);
+            _productRepository.Update(prod);
+
+            return prod;
         }
 
         // DELETE api/<ProductsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Product Delete(long id)
         {
+            var prod = _productRepository.GetById(id);
+            _productRepository.Delete(prod);
+
+            return prod;
         }
     }
 }

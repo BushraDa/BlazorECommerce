@@ -24,6 +24,7 @@
        }
     </tbody>
 </table>
+<button type="button" class="btn btn-success" @onclick="moveToAddPage">Add New Product</button>
 
 @code {
     protected override async Task OnInitializedAsync()
@@ -34,5 +35,9 @@
     void showProduct(long id)
     {
         navManager.NavigateTo($"/product/{id}");        
+    }
+    void moveToAddPage()
+    {
+        navManager.NavigateTo($"/product");        
     }
 }

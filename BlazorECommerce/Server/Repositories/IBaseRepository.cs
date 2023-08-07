@@ -2,12 +2,12 @@
 {
     public interface IBaseRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(string id);
-        T GetById(string id);
+        Task<T?> GetByIdAsync(long id);
+        T? GetById(long id);
         IQueryable<T> GetAll();
-        Task<T> CreateAsync(T entity);
-        T Create(T entity);
-        T Update(T entity);
-        T Delete(T entity);
+        Task CreateAsync(T entity);
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }
