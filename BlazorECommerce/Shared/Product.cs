@@ -9,11 +9,10 @@ namespace BlazorECommerce.Shared
 {
     public class Product
     {
-        public Guid id { get; set; } 
+        public long Id { get; set; } 
         public string Name { get; set; } = String.Empty;
         public string Description { get; set; } = String.Empty;
         [Column(TypeName = "decimal(18,2)")]
         public Decimal Price { get; set; }
-        public Product() => id = Guid.NewGuid();
     }
 }

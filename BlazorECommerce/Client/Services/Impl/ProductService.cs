@@ -19,5 +19,12 @@ namespace BlazorECommerce.Client.Services.Impl
             if (data != null)
                 Products = data;
         }
+
+        public async Task<Product?> GetOne(long id)
+        {
+            var data = await _http.GetFromJsonAsync<Product>($"api/Products/{id}");
+
+            return data;
+        }
     }
 }

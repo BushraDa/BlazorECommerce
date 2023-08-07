@@ -14,12 +14,14 @@ namespace BlazorECommerce.Server
             modelBuilder.Entity<Product>()
                 .HasData(new Product
                 {
+                    Id = 1,
                     Name = "Painting",
                     Description = "",
                     Price = 1000
                 },
                 new Product
                 {
+                    Id = 2,
                     Name = "Embroidery",
                     Description = "",
                     Price = 2000

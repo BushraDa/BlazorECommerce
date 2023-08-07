@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace BlazorECommerce.Server.Migrations
 {
-    public partial class InitialMigrate : Migration
+    public partial class ProductTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,15 +12,26 @@ namespace BlazorECommerce.Server.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Description", "Name", "Price" },
+                values: new object[] { 1L, "", "Painting", 1000m });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Description", "Name", "Price" },
+                values: new object[] { 2L, "", "Embroidery", 2000m });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -26,9 +26,10 @@ namespace BlazorECommerce.Server.Controllers
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Product? Get(long id)
         {
-            return "value";
+            var data = _productRepository.GetById(id);
+            return data;
         }
 
         // POST api/<ProductsController>

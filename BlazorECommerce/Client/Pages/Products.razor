@@ -1,0 +1,38 @@
+﻿@page "/products"
+@inject NavigationManager navManager
+
+<h3>Products List</h3>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in productService.Products)
+       {
+           <tr>
+               <td>@item.Name</td>
+               <td>@item.Description</td>
+               <td>@item.Price</td>
+               <td><button class="btn btn-primary" @onclick="(() => showProduct(item.Id))">show</button></td>
+           </tr>
+       }
+    </tbody>
+</table>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await productService.GetAll();
+    }
+
+    void showProduct(long id)
+    {
+        navManager.NavigateTo($"/product/{id}");        
+    }
+}

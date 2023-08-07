@@ -6,5 +6,6 @@ namespace BlazorECommerce.Client.Services
     {
         public List<Product> Products { get; set; }
         public Task GetAll();
+        public Task<Product?> GetOne(long id);
     }
 }
