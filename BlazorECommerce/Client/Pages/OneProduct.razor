@@ -11,11 +11,12 @@
     <h3>Edit @product.Name</h3>
 }
 
-<EditForm Model="product" OnSubmit="HandleSubmit">
+<EditForm Model="product" OnValidSubmit="HandleSubmit" >
     <div class="row">
         <div class="col-md-3">
             <label for="proName">Name</label>
             <InputText id="proName" @bind-Value="product.Name" class="form-control"></InputText>
+            <ValidationMessage For="@(() => product.Name)"/>
         </div>
         <div class="col-md-3">
             <label for="price">Price</label>
@@ -28,6 +29,8 @@
     </div>
     <button type="submit" class="btn btn-primary">@btnText</button>
     <button type="button" class="btn btn-danger" @onclick="DeleteProduct">Delete Product</button>
+
+    <DataAnnotationsValidator />
 </EditForm>
 
 @code {

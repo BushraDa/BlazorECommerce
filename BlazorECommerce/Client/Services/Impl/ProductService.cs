@@ -1,7 +1,4 @@
-﻿using BlazorECommerce.Shared;
-using Microsoft.AspNetCore.Components;
-using System.Net.Http.Json;
-
+﻿
 namespace BlazorECommerce.Client.Services.Impl
 {
     public class ProductService : IProductService

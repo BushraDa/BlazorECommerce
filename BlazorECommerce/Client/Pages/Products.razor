@@ -1,5 +1,4 @@
 ﻿@page "/products"
-@inject NavigationManager navManager
 
 <h3>Products List</h3>
 
@@ -20,6 +19,7 @@
                <td>@item.Description</td>
                <td>@item.Price</td>
                <td><button class="btn btn-primary" @onclick="(() => showProduct(item.Id))">show</button></td>
+               <td><button class="btn btn-danger" @onclick="(() => deleteProduct(item.Id))">delete</button></td>
            </tr>
        }
     </tbody>
@@ -39,5 +39,9 @@
     void moveToAddPage()
     {
         navManager.NavigateTo($"/product");        
+    }
+    async Task deleteProduct(long id)
+    {
+        await productService.Delete(id);
     }
 }

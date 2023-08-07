@@ -33,6 +33,8 @@ namespace BlazorECommerce.Server.Controllers
         public Product? Get(long id)
         {
             var data = _productRepository.GetById(id);
+            if (data == null)
+                throw new BadHttpRequestException("Item not found");
             return data;
         }
 
@@ -50,8 +52,10 @@ namespace BlazorECommerce.Server.Controllers
         [HttpPut("{id}")]
         public Product Put(long id, [FromBody] ProductAddDto dto)
         {
-
             var prod = _productRepository.GetById(id);
+            if (prod == null)
+                throw new BadHttpRequestException("Item not found");
+
             _mapper.Map(dto, prod);
             _productRepository.Update(prod);
 
@@ -63,6 +67,9 @@ namespace BlazorECommerce.Server.Controllers
         public Product Delete(long id)
         {
             var prod = _productRepository.GetById(id);
+            if (prod == null)
+                throw new BadHttpRequestException("Item not found");
+
             _productRepository.Delete(prod);
 
             return prod;
